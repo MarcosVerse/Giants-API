@@ -1,6 +1,5 @@
 import db from "../../database/db.js";
 
-// GET /api/grupos
 export const getAllGrupos = (req, res) => {
     db.all("SELECT * FROM grupos", (err, rows) => {
         if (err) return res.status(500).json({ error: err.message });
@@ -8,7 +7,6 @@ export const getAllGrupos = (req, res) => {
     });
 };
 
-// POST /api/grupos
 export const createGrupo = (req, res) => {
     const { nome } = req.body;
     if (!nome) return res.status(400).json({ error: "Nome é obrigatório" });
@@ -19,7 +17,6 @@ export const createGrupo = (req, res) => {
     });
 };
 
-// PUT /api/grupos/:id
 export const updateGrupo = (req, res) => {
     const { id } = req.params;
     const { nome } = req.body;
@@ -33,7 +30,6 @@ export const updateGrupo = (req, res) => {
     });
 };
 
-// DELETE /api/grupos/:id
 export const deleteGrupo = (req, res) => {
     const { id } = req.params;
     db.run("DELETE FROM grupos WHERE id = ?", [id], function (err) {

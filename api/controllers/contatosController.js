@@ -1,17 +1,30 @@
 import {
-    listarContatos,
+    buscarContatosAvancado,  
     criarContato,
     atualizarContato,
     deletarContato
 } from "../services/contatoService.js"; 
 
-export const getAllContatos = async (req, res) => {
+export const searchContatos = async (req, res) => {
     try {
-        const { nome = "", page = 1, limit = 8 } = req.query;
+        const {
+            nome = "",
+            telefone = "",
+            grupos = [],
+            page = 1,
+            limit = 8
+        } = req.body;  
+
         const offset = (Number(page) - 1) * Number(limit);
 
-        const result = await listarContatos(nome, Number(limit), Number(offset));
-        // result => { data: [...], total: N }
+        const result = await buscarContatosAvancado({
+            nome,
+            telefone,
+            grupos,
+            limit: Number(limit),
+            offset
+        });
+
         res.json(result);
     } catch (err) {
         res.status(500).json({ error: err.message });

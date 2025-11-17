@@ -2,8 +2,8 @@ import express from "express";
 import {
     getAllGrupos,
     createGrupo,
-    deleteGrupo,
-    updateGrupo
+    updateGrupo,
+    deleteGrupo
 } from "../controllers/gruposController.js";
 
 const router = express.Router();
@@ -13,4 +13,4 @@ router.post("/", createGrupo);
 router.put("/:id", updateGrupo);
 router.delete("/:id", deleteGrupo);
 
-export default router;
+export default router;  

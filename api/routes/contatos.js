@@ -1,6 +1,6 @@
 import express from "express";
 import {
-    getAllContatos,
+    searchContatos,
     createContato,
     updateContato,
     deleteContato
@@ -8,9 +8,9 @@ import {
 
 const router = express.Router();
 
-router.get("/", getAllContatos);
+router.post("/search", searchContatos);
 router.post("/", createContato);
 router.put("/:id", updateContato);
 router.delete("/:id", deleteContato);
 
-export default router;
+export default router;  
